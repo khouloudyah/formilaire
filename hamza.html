@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student of the Year</title>
+    <style>
+        body {
+            background: url('sport_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        form {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 25px;
+            border-radius: 15px;
+            width: 400px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-transform: uppercase;
+        }
+        label {
+            display: inline-block;
+            width: 30%;
+            text-align: left;
+        }
+        input {
+            width: 65%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .checkbox-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .checkbox-group label {
+            width: auto;
+        }
+        button {
+            background: linear-gradient(90deg, #ff5722, #ff9800);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            width: 100%;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #e64a19, #ff5722);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method="post">
+            <h2>Student of the Year</h2>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="surname">Surname:</label>
+                <input type="text" id="surname" name="surname" placeholder="Enter your surname" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="year">University Year:</label>
+                <input type="number" id="year" name="year" min="2024" max="2030" placeholder="Enter your university year" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" " placeholder="Enter your phone number" required>
+            </div>
+            
+            <label>Choose a sport:</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="running" name="sport[]" value="running">
+                <label for="running">Running</label>
+                
+                <input type="checkbox" id="boxing" name="sport[]" value="boxing">
+                <label for="boxing">Boxing</label>
+                
+                <input type="checkbox" id="swimming" name="sport[]" value="swimming">
+                <label for="swimming">Swimming</label>
+            </div>
+            
+            <button type="submit" name="submit">Submit</button>
+        </form>
+    </div>
+
+    <?php
+    if (isset($_POST["submit"])) {
+        $name = htmlspecialchars($_POST["name"]);
+        $surname = htmlspecialchars($_POST["surname"]);
+        $year = htmlspecialchars($_POST["year"]);
+        $phone = htmlspecialchars($_POST["phone"]);
+        $sports = isset($_POST["sport"]) ? implode(", ", $_POST["sport"]) : "None";
+
+        $to = "bouthainasahal113@gmail.com";
+        $subject = "New Student Submission";
+        $message = "Name: $name\nSurname: $surname\nUniversity Year: $year\nPhone: $phone\nChosen Sports: $sports";
+        $headers = "From: noreply@yourdomain.com";
+
+       
+    ?>
+</body>
+</html>
